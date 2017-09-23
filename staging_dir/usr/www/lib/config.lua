@@ -1,7 +1,7 @@
 #!/usr/bin/lua
 
 
-CONF_FILE="/home/hzivy/rundir/etc/base.config"
+CONF_FILE="/home/root/rundir/etc/base.config"
 function dirname(str)  
     if str:match(".-/.-") then  
         local name = string.gsub(str, "(.*/)(.+)", "%1")  
@@ -24,8 +24,8 @@ local __FILE__ = debug.getinfo(1,'S').source:sub(2)
 --PWD=os.getenv("PWD");
 --dofile(dirname(__FILE__) .. "/lib/lib_path.lua");
 DIR=dirname(__FILE__);
-package.path = '/usr/local/share/lua/5.1/?.lua;' .. DIR .. '../lib/?.lua;'
-package.cpath = '/usr/local/lib/lua/5.1/?.so;' .. DIR .. '../lib/?.so;'  
+package.path = '/usr/local/share/lua/5.1/?.lua;' .. DIR .. '../lib/lua/5.1/?.lua;'
+package.cpath = '/usr/local/lib/lua/5.1/?.so;' .. DIR .. '../lib/lua/5.1.?.so;'  
 local cjson=require("cjson")
 
 
@@ -53,7 +53,7 @@ function _read_all_config(file)
 
 	local f = io.open(file,"r");
 	if f == nil then
-		print("f is null ");
+--		print("f is null ");
 		return "{}";
 	end
 	t=f:read("*all");--读取整个文件。

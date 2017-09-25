@@ -23,12 +23,14 @@ DIR=dirname(__FILE__);
 package.path = DIR .. '../lib/lua/5.1/?.lua;'
 package.cpath = DIR .. '../lib/lua/5.1/?.so;'
 local cjson = require("cjson");
-dofile("./lib/log.lua");
-dofile("./lib/webutil.lua");
-dofile("./lib/config.lua");
+dofile("./lib/app.lua");
+--dofile("./lib/log.lua");
+--dofile("./lib/webutil.lua");
+--dofile("./lib/config.lua");
+--dofile("./lib/config.lua");
 
-get_data, cookie_data, post_data, method = get_user_input()
-my_log("----name " .. os.getenv("SCRIPT_NAME"));
+--get_data, cookie_data, post_data, method = get_user_input()
+
 function post_output()
 
 	json_data = {};
@@ -40,10 +42,10 @@ json_data["msg"] = " success"
 end
 --
 if method == "POST" then
-
-	config_["HOSTIP"]=post_data;
-	post_output();
+	
+	config_["PASSWORD"]=post_data;
         set_config(config_);
+	post_output();
 	bak_log("post.hostip.cgi");
 else
 

@@ -1,4 +1,7 @@
-#!/usr/bin/lua
+
+DIR="/home/root/rundir/usr/lib/lua/"
+package.cpath = DIR .. '?.so;' .. DIR .. '/5.1/?.so;' 
+
 local cjson = require("cjson")
 dofile "./lib/log.lua"
 -- globle flags
@@ -68,7 +71,6 @@ function get_user_input()
 		--f:write(v)
     end
 
-
     local cookie_data = {}
     for _, v in ipairs(split(os.getenv("HTTP_COOKIE"), ";")) do
         assemble_value(v, cookie_data)
@@ -91,7 +93,7 @@ end
 --]]
 function get_user_input()
     local _, v
-	
+    local sessionid="xx";	
     local get_data = {}
     for _, v in ipairs(split(os.getenv("QUERY_STRING"), "&")) do
         assemble_value(v, get_data)
@@ -111,12 +113,23 @@ function get_user_input()
 	cjson_input=io.read(post_length);
 	my_log("raw post data(json fmt) : " .. cjson_input);
 	post_data=cjson.decode(cjson_input);
+        sessionid = post_data["SESSIONID"];
+		
+	
 	my_log("show post data(k=v):");	
         for k,v in pairs(post_data) do
 		my_log(k.."="..v);
         end
     end
-    return get_data, cookie_data, post_data, os.getenv("REQUEST_METHOD")
+
+    
+    if os.getenv("REQUEST_METHOD") == "GET" and post_length > 0 then
+     	cjson_input=io.read(post_length);                                  
+        my_log("raw get data(json fmt) : " .. cjson_input);               
+        get_data=cjson.decode(cjson_input);                               
+        sessionid = get_data["SESSIONID"];
+    end
+    return get_data, cookie_data, post_data, os.getenv("REQUEST_METHOD"), sessionid
 end
 
 -- http header

@@ -94,8 +94,8 @@ Ext.onReady(function() {
             handler: function() {
                 if (userLoginPanel.getForm().isValid()) {
                     Ext.Ajax.request({
-                        // url: "login.cgi",
-                        url: "login_ok.json",
+                        url: "login.cgi",
+                        //url: "login_ok.json",
                         method:'POST',
                         params: {
                             USER:userLoginPanel.getForm().findField("username").value,

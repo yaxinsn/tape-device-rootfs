@@ -94,9 +94,10 @@ end
 function get_user_input()
     local _, v
     local sessionid="xx";	
+    local query_data = {}
     local get_data = {}
     for _, v in ipairs(split(os.getenv("QUERY_STRING"), "&")) do
-        assemble_value(v, get_data)
+        assemble_value(v, query_data)
 
     end
 
@@ -110,18 +111,21 @@ function get_user_input()
     local post_length = tonumber(os.getenv("CONTENT_LENGTH")) or 0
 	
     if os.getenv("REQUEST_METHOD") == "POST" and post_length > 0 then
+        for k,v in pairs(query_data) do
+		post_data[k]=v;
+	end	
+
 	cjson_input=io.read(post_length);
 	my_log("raw post data(json fmt) : " .. cjson_input);
 	post_data=cjson.decode(cjson_input);
         sessionid = post_data["SESSIONID"];
 		
-	
 	my_log("show post data(k=v):");	
         for k,v in pairs(post_data) do
 		my_log(k.."="..v);
         end
     end
-
+    
     
     if os.getenv("REQUEST_METHOD") == "GET" and post_length > 0 then
      	cjson_input=io.read(post_length);                                  

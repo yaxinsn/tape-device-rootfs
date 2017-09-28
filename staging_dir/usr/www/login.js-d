@@ -94,30 +94,22 @@ Ext.onReady(function() {
             handler: function() {
                 if (userLoginPanel.getForm().isValid()) {
                     Ext.Ajax.request({
-                        url: "login.cgi",
-                        //url: "login_ok.json",
+                        // url: "login.cgi",
+                        url: "login_ok.json",
                         method:'POST',
-                        dataType:'json',
-                        headers: {'Content-Type':'application/json;charset=utf-8'},
-                        jsonData:JSON.stringify({
+                        params: {
                             USER:userLoginPanel.getForm().findField("username").value,
-                            PASSWORD : Ext.MD5(userLoginPanel.getForm().findField("password").value)
-                        }),
+                            PASSWORD: Ext.MD5(userLoginPanel.getForm().findField("password").value)
+                        },
                         success: function(I) {
                             var json = Ext.JSON.decode(I.responseText);
-                            if (json.STATUS == 'OK') {
+                            if (json.STATUS == 'ok') {
                                 // Ext.Msg.alert("登陆成功", json.SESSIONID);
                                 Ext.util.Cookies.set("SESSIONID",json.SESSIONID);
                                 window.location.href="index.html";
-                            } else if(json.STATUS == 'USER ERROR'){
-                                Ext.Msg.alert("登陆失败", '用户名错误');
-                            }else if(json.STATUS == 'PASSWORD ERROR'){
-                                Ext.Msg.alert("登陆失败", '密码错误');
+                            } else {
+                                Ext.Msg.alert("登陆失败", json.INFO);
                             }
-                            else{
-                                Ext.Msg.alert("登陆失败", '用户名或密码错误');
-                            }
-
                         },
                         failure: function(I) {
                             Ext.MessageBox.alert("错误", "请联系管理员解决时")

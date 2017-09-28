@@ -11,15 +11,27 @@ dofile("./lib/config.lua");
 ----------------------------------------------------------------------------
 -- @param k String with original message.
 -- @return String with the md5 hash value converted to hexadecimal digits
-
+function md5_sumhexa(k)
+        local md5_core = require "md5.core"
+        k = md5_core.sum(k)
+        return (string.gsub(k, ".", 
+                function (c) 
+                        return string.format("%02x", string.byte(c)) 
+                end
+                )
+        )
+end
 function core.sumhexa (k)
   k = core.sum(k)
   return (string.gsub(k, ".", function (c)
            return string.format("%02x", string.byte(c))
          end))
 end
-
-
+--[[
+function md5_sumhexa(t)
+	return core.sumhexa(t);
+end
+--]]
 
 function check_password(user, passwd)
 	my_log("check_password : user=" .. user .. "password=" .. passwd);
@@ -69,7 +81,7 @@ function is_authed(sess_id)
         local l_uptime = exec_get_local("awk -F. '{print $1}' /proc/uptime ");
         local x= l_uptime - result;
         my_log("session during time is " .. x); 
-        if x > 180 then
+        if x > 18 then
 		return false;
         end
         return true
@@ -77,13 +89,14 @@ function is_authed(sess_id)
 	return false;
 end
 function do_login(user, password)
-    local salt = core.sumhexa(user..internalHashKey);
+    local salt =""
     --local stamp = os.time()
+   my_log("enter do_login");
     if check_password(user, password) then
         --login success, so return username and salt for add cookies
-	local time=print(os.date("%s"));
-        salt = core.sumhexa(time..internalHashKey);  
-        os.execute("echo " ..salt.. "/tmp/web_session_id");
+	local time=os.date("%s");
+        salt = md5_sumhexa(time);  
+        os.execute("echo " ..salt.. " > /tmp/web_session_id");
         os.execute("awk -F. '{print $1}' /proc/uptime > /tmp/web_stamp")
         return true, user, salt
     else --passwd error or username error

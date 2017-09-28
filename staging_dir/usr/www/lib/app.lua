@@ -21,13 +21,17 @@ local script_name=os.getenv("SCRIPT_NAME") or ""
 
 my_log("script name " .. script_name);
 -- 2.check auth
-if not string.find(script_name,"login")  and not is_authed(sessionid) then 
+if not string.find(script_name,"login")  then
+      flag =is_authed(sessionid)
+      if not flag then
       obj = 
 	{
-		status = "401",
-		msg = "URL is Unauthorized (401)",
+		status = "TIMEOUT",
+		msg = "Session is timerout ",
 	}
 	json_http_resp(obj)
+        os.exit();
+      end
 end
 
 my_log("script name " .. script_name .. " app.lua is end");

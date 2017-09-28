@@ -46,7 +46,7 @@ if method == "POST" then
             local success,user, sessionid = do_login(post_data["USER"],post_data["PASSWORD"]);
             if success then
                  _data["SESSIONID"]=sessionid;
-                 _data["STATUS"]="ok"
+                 _data["STATUS"]="OK"
             else
                  _data["STATUS"]="PASSWORD ERROR";
             end

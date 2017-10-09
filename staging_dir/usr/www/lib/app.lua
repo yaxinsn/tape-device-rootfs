@@ -26,8 +26,8 @@ if not string.find(script_name,"login")  then
       if not flag then
       obj = 
 	{
-		status = "TIMEOUT",
-		msg = "Session is timerout ",
+		STATUS = "TIMEOUT",
+		MSG = "Session is timerout ",
 	}
 	json_http_resp(obj)
         os.exit();

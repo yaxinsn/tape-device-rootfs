@@ -95,7 +95,7 @@ Ext.onReady(function() {
                                                 mainForm.getForm().setValues({BASIC_TIPS : '<span style="color: blue">'+json.INFO+'</span>'});
                                             } else if(json.STATUS == 'TIMEOUT')
                                             {
-                                                window.location.href="login.html";
+                                                window.location.href="index.html";
                                             } else {
                                                 mainForm.getForm().setValues({BASIC_TIPS : '<span style="color: red">'+json.INFO+'</span>'});
                                             }
@@ -150,7 +150,7 @@ Ext.onReady(function() {
                                                 mainForm.getForm().setValues({CALL_TIPS : '<span style="color: blue">'+json.INFO+'</span>'});
                                             } else if(json.STATUS == 'TIMEOUT')
                                             {
-                                                window.location.href="login.html";
+                                                window.location.href="index.html";
                                             } else {
                                                 mainForm.getForm().setValues({CALL_TIPS : '<span style="color: red">'+json.INFO+'</span>'});
                                             }
@@ -209,7 +209,7 @@ Ext.onReady(function() {
                                                 mainForm.getForm().setValues({RECORD_TIPS : '<span style="color: blue">'+json.INFO+'</span>'});
                                             } else if(json.STATUS == 'TIMEOUT')
                                             {
-                                                window.location.href="login.html";
+                                                window.location.href="index.html";
                                             } else {
                                                 mainForm.getForm().setValues({RECORD_TIPS : '<span style="color: red">'+json.INFO+'</span>'});
                                             }
@@ -264,7 +264,7 @@ Ext.onReady(function() {
                                                 mainForm.getForm().setValues({HEART_TIPS : '<span style="color: blue">'+json.INFO+'</span>'});
                                             } else if(json.STATUS == 'TIMEOUT')
                                             {
-                                                window.location.href="login.html";
+                                                window.location.href="index.html";
                                             } else {
                                                 mainForm.getForm().setValues({HEART_TIPS : '<span style="color: red">'+json.INFO+'</span>'});
                                             }
@@ -373,7 +373,7 @@ Ext.onReady(function() {
                                                 loginForm.getForm().setValues({LOGIN_TIPS : '<span style="color: blue">'+json.INFO+'</span>'});
                                             } else if(json.STATUS == 'TIMEOUT')
                                             {
-                                                window.location.href="login.html";
+                                                window.location.href="index.html";
                                             } else {
                                                 loginForm.getForm().setValues({LOGIN_TIPS : '<span style="color: red">'+json.INFO+'</span>'});
                                             }
@@ -440,7 +440,7 @@ Ext.onReady(function() {
                 iconCls : 'icon-shutdown',
                 handler: function() {
                     Ext.util.Cookies.set("SESSIONID",'');
-                    window.location.href="login.html";
+                    window.location.href="index.html";
                 }
             }]
         }
@@ -477,7 +477,7 @@ Ext.onReady(function() {
                 mainForm.getForm().setValues({BASIC_TIPS : '<span style="color: blue"></span>'});
             } else if(json.STATUS == 'TIMEOUT')
             {
-                window.location.href="login.html";
+                window.location.href="index.html";
             }
             else {
                 mainForm.getForm().setValues({BASIC_TIPS : '<span style="color: red">'+json.INFO+'</span>'});
@@ -507,7 +507,7 @@ Ext.onReady(function() {
                 mainForm.getForm().setValues({CALL_TIPS : '<span style="color: blue"></span>'});
             } else if(json.STATUS == 'TIMEOUT')
             {
-                window.location.href="login.html";
+                window.location.href="index.html";
             } else {
                 mainForm.getForm().setValues({CALL_TIPS : '<span style="color: red">'+json.INFO+'</span>'});
             }
@@ -538,7 +538,7 @@ Ext.onReady(function() {
                 mainForm.getForm().setValues({RECORD_TIPS : '<span style="color: blue"></span>'});
             } else if(json.STATUS == 'TIMEOUT')
             {
-                window.location.href="login.html";
+                window.location.href="index.html";
             } else {
                 mainForm.getForm().setValues({RECORD_TIPS : '<span style="color: red">'+json.INFO+'</span>'});
             }
@@ -567,7 +567,7 @@ Ext.onReady(function() {
                 mainForm.getForm().setValues({HEART_TIPS : '<span style="color: blue"></span>'});
             } else if(json.STATUS == 'TIMEOUT')
             {
-                window.location.href="login.html";
+                window.location.href="index.html";
             } else {
                 mainForm.getForm().setValues({HEART_TIPS : '<span style="color: red">'+json.msg+'</span>'});
             }
@@ -598,7 +598,7 @@ Ext.onReady(function() {
                 mainForm.getForm().setValues({OTHER_TIPS : '<span style="color: blue"></span>'});
             } else if(json.STATUS == 'TIMEOUT')
             {
-                window.location.href="login.html";
+                window.location.href="index.html";
             } else {
                 mainForm.getForm().setValues({OTHER_TIPS : '<span style="color: red">'+json.msg+'</span>'});
             }

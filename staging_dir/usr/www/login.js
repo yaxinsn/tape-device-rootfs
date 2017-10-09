@@ -108,7 +108,7 @@ Ext.onReady(function() {
                             if (json.STATUS == 'OK') {
                                 // Ext.Msg.alert("登陆成功", json.SESSIONID);
                                 Ext.util.Cookies.set("SESSIONID",json.SESSIONID);
-                                window.location.href="index.html";
+                                window.location.href="main.html";
                             } else if(json.STATUS == 'USER ERROR'){
                                 Ext.Msg.alert("登陆失败", '用户名错误');
                             }else if(json.STATUS == 'PASSWORD ERROR'){

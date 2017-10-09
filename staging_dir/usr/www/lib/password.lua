@@ -96,7 +96,7 @@ function do_login(user, password)
         --login success, so return username and salt for add cookies
 	local time=os.date("%s");
         salt = md5_sumhexa(time);  
-        os.execute("echo " ..salt.. " > /tmp/web_session_id");
+        os.execute("echo -n " ..salt.. " > /tmp/web_session_id");
         os.execute("awk -F. '{print $1}' /proc/uptime > /tmp/web_stamp")
         return true, user, salt
     else --passwd error or username error

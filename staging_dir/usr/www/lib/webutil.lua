@@ -93,7 +93,7 @@ end
 --]]
 function get_user_input()
     local _, v
-    local sessionid="xx";	
+    local sessionid="no-sessionid";	
     local query_data = {}
     local get_data = {}
     for _, v in ipairs(split(os.getenv("QUERY_STRING"), "&")) do
@@ -118,7 +118,10 @@ function get_user_input()
 	cjson_input=io.read(post_length);
 	my_log("raw post data(json fmt) : " .. cjson_input);
 	post_data=cjson.decode(cjson_input);
-        sessionid = post_data["SESSIONID"];
+    my_log("get_user_input:c0 " .. sessionid);
+	if post_data["SESSIONID"] ~= nil then
+        	sessionid = post_data["SESSIONID"];
+	end
 		
 	my_log("show post data(k=v):");	
         for k,v in pairs(post_data) do
@@ -130,8 +133,15 @@ function get_user_input()
     if os.getenv("REQUEST_METHOD") == "GET" and post_length > 0 then
      	cjson_input=io.read(post_length);                                  
         my_log("raw get data(json fmt) : " .. cjson_input);               
-        get_data=cjson.decode(cjson_input);                               
-        sessionid = get_data["SESSIONID"];
+        get_data=cjson.decode(cjson_input);
+                               
+    end
+
+    if os.getenv("REQUEST_METHOD") == "GET" then
+	if query_data["SESSIONID"] ~= nil then
+		my_log("bingo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11")
+		sessionid=query_data["SESSIONID"]
+	end	
     end
     return get_data, cookie_data, post_data, os.getenv("REQUEST_METHOD"), sessionid
 end

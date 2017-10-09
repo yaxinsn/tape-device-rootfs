@@ -115,7 +115,7 @@ Ext.onReady(function() {
                                 Ext.Msg.alert("登陆失败", '密码错误');
                             }
                             else{
-                                Ext.Msg.alert("登陆失败", '用户名或密码错误');
+                                Ext.Msg.alert("登陆失败", '原因未知');
                             }
 
                         },

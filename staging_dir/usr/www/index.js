@@ -93,6 +93,9 @@ Ext.onReady(function() {
                                             if (json.STATUS == 'OK') {
                                                 Ext.util.Cookies.set("SESSIONID",json.SESSIONID);
                                                 mainForm.getForm().setValues({BASIC_TIPS : '<span style="color: blue">'+json.INFO+'</span>'});
+                                            } else if(json.STATUS == 'TIMEOUT')
+                                            {
+                                                window.location.href="login.html";
                                             } else {
                                                 mainForm.getForm().setValues({BASIC_TIPS : '<span style="color: red">'+json.INFO+'</span>'});
                                             }
@@ -145,6 +148,9 @@ Ext.onReady(function() {
                                             if (json.STATUS == 'OK') {
                                                 Ext.util.Cookies.set("SESSIONID",json.SESSIONID);
                                                 mainForm.getForm().setValues({CALL_TIPS : '<span style="color: blue">'+json.INFO+'</span>'});
+                                            } else if(json.STATUS == 'TIMEOUT')
+                                            {
+                                                window.location.href="login.html";
                                             } else {
                                                 mainForm.getForm().setValues({CALL_TIPS : '<span style="color: red">'+json.INFO+'</span>'});
                                             }
@@ -201,6 +207,9 @@ Ext.onReady(function() {
                                             if (json.STATUS == 'OK') {
                                                 Ext.util.Cookies.set("SESSIONID",json.SESSIONID);
                                                 mainForm.getForm().setValues({RECORD_TIPS : '<span style="color: blue">'+json.INFO+'</span>'});
+                                            } else if(json.STATUS == 'TIMEOUT')
+                                            {
+                                                window.location.href="login.html";
                                             } else {
                                                 mainForm.getForm().setValues({RECORD_TIPS : '<span style="color: red">'+json.INFO+'</span>'});
                                             }
@@ -253,6 +262,9 @@ Ext.onReady(function() {
                                             if (json.STATUS == 'OK') {
                                                 Ext.util.Cookies.set("SESSIONID",json.SESSIONID);
                                                 mainForm.getForm().setValues({HEART_TIPS : '<span style="color: blue">'+json.INFO+'</span>'});
+                                            } else if(json.STATUS == 'TIMEOUT')
+                                            {
+                                                window.location.href="login.html";
                                             } else {
                                                 mainForm.getForm().setValues({HEART_TIPS : '<span style="color: red">'+json.INFO+'</span>'});
                                             }
@@ -359,6 +371,9 @@ Ext.onReady(function() {
                                             if (json.STATUS == 'OK') {
                                                 Ext.util.Cookies.set("SESSIONID",json.SESSIONID);
                                                 loginForm.getForm().setValues({LOGIN_TIPS : '<span style="color: blue">'+json.INFO+'</span>'});
+                                            } else if(json.STATUS == 'TIMEOUT')
+                                            {
+                                                window.location.href="login.html";
                                             } else {
                                                 loginForm.getForm().setValues({LOGIN_TIPS : '<span style="color: red">'+json.INFO+'</span>'});
                                             }
@@ -431,17 +446,10 @@ Ext.onReady(function() {
         }
     });
 
-    var win = Ext.widget('viewport', {
-        constrain : true,
-        layout : 'border',
-        title : '配置盒子参数',
-        border : false,
-        items : [mainTab]
-    });
-
     //初始化时的get
     //初始化基本信息
     Ext.Ajax.request({
+        async: false,   //ASYNC 是否异步( TRUE 异步 , FALSE 同步)
         url: "hostip.cgi",
         // url: "hostip.cgi.json",
         method:'GET',
@@ -451,6 +459,14 @@ Ext.onReady(function() {
         success: function(html) {
             var json = Ext.JSON.decode(html.responseText);
             if (json.STATUS == 'OK') {
+                Ext.widget('viewport', {
+                    constrain : true,
+                    layout : 'border',
+                    title : '配置盒子参数',
+                    border : false,
+                    items : [mainTab]
+                });
+
                 mainForm.getForm().setValues({
                     MAC:json.HOSTIP.MAC,
                     IP:json.HOSTIP.IP,
@@ -459,7 +475,11 @@ Ext.onReady(function() {
                 });
                 Ext.util.Cookies.set("SESSIONID",json.SESSIONID);
                 mainForm.getForm().setValues({BASIC_TIPS : '<span style="color: blue"></span>'});
-            } else {
+            } else if(json.STATUS == 'TIMEOUT')
+            {
+                window.location.href="login.html";
+            }
+            else {
                 mainForm.getForm().setValues({BASIC_TIPS : '<span style="color: red">'+json.INFO+'</span>'});
             }
         },
@@ -485,6 +505,9 @@ Ext.onReady(function() {
                 });
                 Ext.util.Cookies.set("SESSIONID",json.SESSIONID);
                 mainForm.getForm().setValues({CALL_TIPS : '<span style="color: blue"></span>'});
+            } else if(json.STATUS == 'TIMEOUT')
+            {
+                window.location.href="login.html";
             } else {
                 mainForm.getForm().setValues({CALL_TIPS : '<span style="color: red">'+json.INFO+'</span>'});
             }
@@ -513,6 +536,9 @@ Ext.onReady(function() {
                 });
                 Ext.util.Cookies.set("SESSIONID",json.SESSIONID);
                 mainForm.getForm().setValues({RECORD_TIPS : '<span style="color: blue"></span>'});
+            } else if(json.STATUS == 'TIMEOUT')
+            {
+                window.location.href="login.html";
             } else {
                 mainForm.getForm().setValues({RECORD_TIPS : '<span style="color: red">'+json.INFO+'</span>'});
             }
@@ -539,6 +565,9 @@ Ext.onReady(function() {
                 });
                 Ext.util.Cookies.set("SESSIONID",json.SESSIONID);
                 mainForm.getForm().setValues({HEART_TIPS : '<span style="color: blue"></span>'});
+            } else if(json.STATUS == 'TIMEOUT')
+            {
+                window.location.href="login.html";
             } else {
                 mainForm.getForm().setValues({HEART_TIPS : '<span style="color: red">'+json.msg+'</span>'});
             }
@@ -567,6 +596,9 @@ Ext.onReady(function() {
                 });
                 Ext.util.Cookies.set("SESSIONID",json.SESSIONID);
                 mainForm.getForm().setValues({OTHER_TIPS : '<span style="color: blue"></span>'});
+            } else if(json.STATUS == 'TIMEOUT')
+            {
+                window.location.href="login.html";
             } else {
                 mainForm.getForm().setValues({OTHER_TIPS : '<span style="color: red">'+json.msg+'</span>'});
             }

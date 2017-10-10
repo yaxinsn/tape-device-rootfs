@@ -1,8 +1,4 @@
 
-local cjson = require("cjson");
-dofile("./lib/log.lua");
-dofile("./lib/webutil.lua");
-dofile("./lib/config.lua");
 dofile("./lib/app.lua");
 
 --get_data, cookie_data, post_data, method = get_user_input()

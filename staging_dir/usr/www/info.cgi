@@ -1,7 +1,4 @@
 
-local cjson = require("cjson");
-dofile("./lib/log.lua");
-dofile("./lib/webutil.lua");
 dofile("./lib/app.lua");
 
 

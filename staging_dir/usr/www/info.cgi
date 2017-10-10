@@ -1,17 +1,18 @@
-#!/usr/bin/lua
+
 local cjson = require("cjson");
 dofile("./lib/log.lua");
 dofile("./lib/webutil.lua");
+dofile("./lib/app.lua");
 
 
-get_data, cookie_data, post_data, method = get_user_input()
+--get_data, cookie_data, post_data, method = get_user_input()
 
 function post_output()
 
 	local json_data = {};
 	local http_data = {};
 	json_data["STATUS"] = "error"
-json_data["msg"] = " Can't POST "
+	json_data["INFO"] = "Can't POST"
 	json_http_resp(json_data);
 	my_log("-POST-is end, but info not support port");
 end
@@ -25,7 +26,6 @@ else
 	local json_data = {};
 	local http_data = {};
 	json_data["STATUS"] = "OK"
---json_data["msg"] = "get csip success"
 	http_data["MAC"] = "00:11:22:33:44:55"
 	http_data["WEB_VER"] = "web_v1"
 	http_data["SYS_VER"] = "sys_v1"

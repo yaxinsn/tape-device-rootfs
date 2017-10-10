@@ -35,7 +35,7 @@ function post_output()
 	json_data = {};
 	http_data = {};
 	json_data["STATUS"] = "OK"
-json_data["msg"] = " success"
+	json_data["INFO"] = "success"
 	json_http_resp(json_data);
 	my_log("-POST-is end");
 end

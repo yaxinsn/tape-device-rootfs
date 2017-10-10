@@ -36,6 +36,10 @@ end
 function check_password(user, passwd)
 	my_log("check_password : user=" .. user .. "password=" .. passwd);
 	local local_passwd="";
+	if user ~= "HzivyBox" then
+		my_log("password.lua: check_password: user is not HzivyBox, return false;");
+		return false;
+	end
 	if config_["PASSWORD"] == nil then
 		local_passwd = md5_sumhexa("Hzivy_Box");
 		my_log("check_password: config no password and default passwordmd5 is " .. local_passwd);
@@ -76,14 +80,16 @@ end
 function is_authed(sess_id)
 	local l_sessionid = exec_get_local("cat /tmp/web_session_id");
     if l_sessionid == sess_id then
-        my_log("session id is matched !");
+        my_log("password.lua: is_authed: session id is matched !");
         local result = exec_get_local("cat /tmp/web_stamp");
         local l_uptime = exec_get_local("awk -F. '{print $1}' /proc/uptime ");
         local x= l_uptime - result;
-        my_log("session during time is " .. x); 
-        if x > 18 then
+        my_log("password.lua: is_authed:session during time is " .. x); 
+        if x > 1800 then
+        	my_log("password.lua: is_authed:session timeout " .. x .. " > 1800"); 
 		return false;
         end
+        os.execute("awk -F. '{print $1}' /proc/uptime > /tmp/web_stamp")
         return true
     end
 	return false;

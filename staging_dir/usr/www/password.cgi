@@ -3,14 +3,14 @@
 --dofile("./lib/webutil.lua");
 --dofile("./lib/config.lua");
 dofile("./lib/app.lua");
-get_data, cookie_data, post_data, method = get_user_input()
+--get_data, cookie_data, post_data, method = get_user_input()
 
 function post_output()
 
 	json_data = {};
 	http_data = {};
 	json_data["STATUS"] = "OK"
-json_data["msg"] = " success"
+	json_data["INFO"] = "success"
 	json_http_resp(json_data);
 	my_log("-POST-is end");
 end

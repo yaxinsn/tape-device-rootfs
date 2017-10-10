@@ -36,7 +36,7 @@ Ext.onReady(function() {
                     iconCls : 'icon-user',
                     labelAlign:'right',
                     labelWidth:65,
-                    value:'',
+                    value:'HzivyBox',
                     emptyText:'请输入用户名',
                     blankText:"密码不能为空，请填写！",
                     allowBlank: false
@@ -47,6 +47,7 @@ Ext.onReady(function() {
                     inputType:"password",
                     iconCls : 'icon-key',
                     labelWidth:65,
+                    value:'Hzivy_Box',
                     labelAlign:'right',
                     emptyText:'请输入密码',
                     maxLengthText :'密码长度不能超过20',
@@ -108,7 +109,7 @@ Ext.onReady(function() {
                             if (json.STATUS == 'OK') {
                                 // Ext.Msg.alert("登陆成功", json.SESSIONID);
                                 Ext.util.Cookies.set("SESSIONID",json.SESSIONID);
-                                window.location.href="main.html";
+                                window.location.href="index.html";
                             } else if(json.STATUS == 'USER ERROR'){
                                 Ext.Msg.alert("登陆失败", '用户名错误');
                             }else if(json.STATUS == 'PASSWORD ERROR'){

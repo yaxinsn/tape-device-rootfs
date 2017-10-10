@@ -30,9 +30,13 @@ if not string.find(script_name,"login")  then
 		MSG = "Session is timerout ",
 	}
 	json_http_resp(obj)
+	my_log("app.lua: 2 check auth, session timeout");
         os.exit();
-      end
+      else
+	
+	my_log("app.lua: 2 check auth, session is ok");
+	end
 end
 
-my_log("script name " .. script_name .. " app.lua is end");
+my_log("app.lua : is end script name " .. script_name);
 -- 3.route

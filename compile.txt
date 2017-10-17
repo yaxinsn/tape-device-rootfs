@@ -15,7 +15,6 @@
 
 --zlib
 
-AR="arm-linux-gnueabihf-ar" AS="arm-linux-gnueabihf-gcc -c -Os -pipe   -fno-caller-saves   -msoft-float" LD=arm-linux-gnueabihf-ld NM="arm-linux-gnueabihf-gcc-nm" CC="arm-linux-gnueabihf-gcc" GCC="arm-linux-gnueabihf-gcc" CXX="arm-linux-gnueabihf-g++" RANLIB="arm-linux-gnueabihf-gcc-ranlib" STRIP=arm-linux-gnueabihf-strip OBJCOPY=arm-linux-gnueabihf-objcopy OBJDUMP=arm-linux-gnueabihf-objdump SIZE=arm-linux-gnueabihf-size LDSHARED="arm-linux-gnueabihf-gcc -shared -Wl,-soname,libz.so.1" CFLAGS="-Os -pipe  -fno-caller-saves  -msoft-float -fpic" ./configure --prefix=/usr --shared --uname=Linux 
 
 CC="arm-linux-gnueabihf-gcc" ./configure --prefix=/tmp/usr --shared --uname=Linux
 
@@ -25,4 +24,16 @@ CC="arm-linux-gnueabihf-gcc" ./configure --prefix=/tmp/usr --shared --uname=Linu
 ---libcap
 
 
+$ ./configure -target=arm-linux-gnueabihf --host=arm-linux-gnueabihf --build=x86_64-redhat-linux --program-prefix= --program-suffix=--prefix=/work/record_voip/rundir/usr --exec-prefix=/work/record_voip/rundir/usr --bindir=/work/record_voip/rundir//usr/bin --sbindir=/work/record_voip/rundir//usr/sbin --libexecdir=/work/record_voip/rundir//usr/lib --sysconfdir=/work/record_voip/rundir//etc --datadir=/work/record_voip/rundir//usr/share --disable-ipv6 --enable-shared --enable-static --disable-yydebug --with-build-cc=gcc --with-pcap=linux --without-septel --without-dag --without-libnl --without-snf --disable-can --disable-canusb --disable-dbus --disable-bluetooth
+
+
+busybox
+
+.config
+CONFIG_CROSS_COMPILER_PREFIX="arm-linux-gnueabihf-"
+CONFIG_SYSROOT="/opt//gcc-linaro-arm-linux-gnueabihf-4.7-2013.03-20130313_linux/arm-linux-gnueabihf/libc"
+
+--lua
+
+make linux INSTALL_TOP=/work/record_voip/rundir/usr CC=arm-linux-gnueabihf-gcc
 

@@ -24,7 +24,7 @@ CC="arm-linux-gnueabihf-gcc" ./configure --prefix=/tmp/usr --shared --uname=Linu
 ---libcap
 
 
-$ ./configure -target=arm-linux-gnueabihf --host=arm-linux-gnueabihf --build=x86_64-redhat-linux --program-prefix= --program-suffix=--prefix=/work/record_voip/rundir/usr --exec-prefix=/work/record_voip/rundir/usr --bindir=/work/record_voip/rundir//usr/bin --sbindir=/work/record_voip/rundir//usr/sbin --libexecdir=/work/record_voip/rundir//usr/lib --sysconfdir=/work/record_voip/rundir//etc --datadir=/work/record_voip/rundir//usr/share --disable-ipv6 --enable-shared --enable-static --disable-yydebug --with-build-cc=gcc --with-pcap=linux --without-septel --without-dag --without-libnl --without-snf --disable-can --disable-canusb --disable-dbus --disable-bluetooth
+$ ./configure -target=arm-linux-gnueabihf --host=arm-linux-gnueabihf --build=x86_64-redhat-linux --program-prefix= --program-suffix= --prefix=/work/record_voip/rundir/usr --exec-prefix=/work/record_voip/rundir/usr --bindir=/work/record_voip/rundir//usr/bin --sbindir=/work/record_voip/rundir//usr/sbin --libexecdir=/work/record_voip/rundir//usr/lib --sysconfdir=/work/record_voip/rundir//etc --datadir=/work/record_voip/rundir//usr/share --disable-ipv6 --enable-shared --enable-static --disable-yydebug --with-build-cc=gcc --with-pcap=linux --without-septel --without-dag --without-libnl --without-snf --disable-can --disable-canusb --disable-dbus --disable-bluetooth
 
 
 busybox
